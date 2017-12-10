@@ -45,7 +45,7 @@
                 <td>Subject:</td>
                 <td>
                     <ul>
-                        <li ng-repeat="subject in student.subjects | filter: subjectName | orderBy:'marks'">
+                        <li ng-repeat="subject in student.subjects | filter: student.subjectName | orderBy:'marks'">
                             {{subject.name+', marks:' + subject.marks}}
                         </li>
                     </ul>
