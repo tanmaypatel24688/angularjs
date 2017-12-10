@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.js"></script>
+    <script src="angular.min.js"></script>
+</head>
+<body>
+    <div ng-app="" ng-controller="studentController">
+        <table border="0">
+            <tr>
+                <td>Enter first name:</td>
+                <td><input type="text" ng-model="student.firstName" /></td>
+            </tr>
+            <tr>
+                <td>Enter last name:</td>
+                <td><input type="text" ng-model="student.lastName" /></td>
+            </tr>
+            <tr>
+                <td>Enter fees:</td>
+                <td><input type="text" ng-model="student.fees" /></td>
+            </tr>
+            <tr>
+                <td>Enter subject:</td>
+                <td><input type="text" ng-model="student.subjectName" /></td>
+            </tr>
+        </table>
+
+        <table border="0">
+            <tr>
+                <td>Name in Upper Case:</td>
+                <td>{{student.fullName() | uppercase}}</td>
+            </tr>
+            <tr>
+                <td>Name in Lower Case:</td>
+                <td>{{student.fullName() | lowercase}}</td>
+            </tr>
+            <tr>
+                <td>fees:</td>
+                <td>{{student.fees | currency}}</td>
+            </tr>
+            <tr>
+                <td>Subject:</td>
+                <td>
+                    <ul>
+                        <li ng-repeat="subject in student.subjects | filter: subjectName | orderBy:'marks'">
+                            {{subject.name+', marks:' + subject.marks}}
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+    <script>
+        function studentController($scope) {
+            $scope.student = {
+                firstName: "Tanmay",
+                lastName: "Patel",
+                fees: 500,
+                subjects: [
+                    { name: 'Physics', marks: 70 },
+                    { name: 'Chemistry', marks: 80 },
+                    { name: 'Math', marks: 65 },
+                ],
+                fullName: function () {
+                    var studentObject;
+                    studentObject = $scope.student;
+                    return studentObject.firstName + " " + studentObject.lastName;
+                }
+            };
+        }
+    </script>
+</body>
+</html>
